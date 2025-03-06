@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZafaGo - Product Detail</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/buttons.css">
+    <link rel="stylesheet" href="styles/store.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        .star-rating {
+            color: #ffd700; 
+            font-size: 20px;
+            padding: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand">ZafaGo</div>
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Store</a></li>
+            <li><a href="promo.html">Deals</a></li>
+            <li><a href="cart.html">Cart <span id="cart-total">0</span></a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <section class="products-page">
+        <h2 id="product-title"></h2>
+        <div class="game-card" style="max-width: 600px; margin: 0 auto;">
+            <img id="product-img" alt="Product">
+            <h3 id="product-name"></h3>
+            <p id="product-price"></p>
+            <p id="product-desc" style="color: #c0c0c0; margin: 15px 20px;"></p>
+            <div class="star-rating" id="product-rating"></div>
+            <button class="add-to-cart-btn" id="add-to-cart">Add to Cart</button>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2025 ZafaGo. Crafted with Passion.</p>
+    </footer>
+
+    <script>
+        const gameData = [
+        { id: 1, title: 'Elden Ring', price: 29.99, discount: 30, image: 'assets/game1.jpg', desc: 'Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring.', rating: 5 },
+        { id: 2, title: 'Tides of Annihilation', price: 49.99, discount: 0, image: 'assets/game2.jpg', desc: 'Survive the ravages of the apocalypse and forge your own path in the world of Tides of Annihilation.', category: 'action', rating: 4 },
+        { id: 3, title: 'World War Z: Aftermath', price: 10.99, discount: 35, image: 'assets/game3.jpg', desc: 'Survive the apocalypse and forge your own path in the world of World War Z: Aftermath.', category: 'adventure'  , rating: 3 },
+        { id: 4, title: 'Assassins Creed Mirage', price: 15.00, discount: 20, image: 'assets/game4.jpg', desc: 'Embark on a new journey in the world of Assassins Creed Mirage.', rating: 4 },
+        { id: 5, title: 'Assassins Creed Shadows', price: 40.00, discount: 0, image: 'assets/game5.jpg', desc: 'Become a lethal shinobi Assassin and powerful, legendary samurai as you explore a beautiful open world in a time of chaos. Switch between these two unlikely allies as you discover their common destiny. Master complementary playstyles, create your shinobi league, customize your hideout, and usher in a new era for Japan..', rating: 4 },
+        { id: 6, title: 'Assassins Creed Valhalla', price: 44.99, discount: 40, image: 'assets/game6.jpg', desc: 'Embark on a new journey in the world of Assassins Creed Valhalla.', rating: 3 },
+        { id: 7, title: 'Ghost Of Yotei', price: 59.99, discount: 0, image: 'assets/game7.jpg', desc: 'Embark on a new journey in the world of Ghost Of Yotei.', rating: 5 },
+        { id: 8, title: 'Baldurs Gate 3', price: 39.99, discount: 15, image: 'assets/game8.jpg', desc: 'Mysterious abilities are awakening inside you, drawn from a mind flayer parasite planted in your brain. Resist, and turn darkness against itself. Or embrace corruption, and become ultimate evil..', rating: 5 },
+        { id: 9, title: 'Black Myth: Wukong', price: 59.99, discount: 15, image: 'assets/game9.jpg', desc: 'You shall set out as the Destined One to venture into the challenges and marvels ahead, to uncover the obscured truth beneath the veil of a glorious legend from the past..', rating: 4 },
+        { id: 10, title: 'Call Of Duty: Black Ops 6', price: 49.99, discount: 15, image: 'assets/game10.jpg', desc: 'Embark on a new journey in the world of Call Of Duty: Black Ops 6.', rating: 4 },
+        { id: 11, title: 'Call Of Duty: Modern Warfare 2', price: 30.99, discount: 30, image: 'assets/game11.jpg', desc: 'Embark on a new journey in the world of Call Of Duty: Modern Warfare 2.', rating: 4 },
+        { id: 12, title: 'Cities Skylines 2', price: 29.99, discount: 40, image: 'assets/game12.jpg',desc: 'Raise a city from the ground up and transform it into the thriving metropolis only you can imagine. You have never experienced building on this scale. With deep simulation and a living economy.', rating: 3 },
+        { id: 13, title: 'Cyberpunk 2077', price: 29.00, discount: 25, image: 'assets/game13.jpg', desc: 'Become an urban outlaw equipped with cybernetic enhancements and build your legend on the streets of Night City.', rating: 4 },
+        { id: 14, title: 'Days Gone', price: 22.99, discount: 60, image: 'assets/game14.jpg', desc: 'Embark on a new journey in the world of Days Gone.', rating: 2 },
+        { id: 15, title: 'Diablo IV: Vessel Of Hatred', price: 29.99, discount: 15, image: 'assets/game15.jpg', desc: 'Embark on a new journey in the world of Diablo IV: Vessel Of Hatred.', rating: 4 },
+        { id: 16, title: 'FC 24', price: 25.99, discount: 80, image: 'assets/game16.jpg', desc: 'Embark on a new journey in the world of FC 24.', rating: 3 },
+        { id: 17, title: 'Far Cry 6', price: 37.99, discount: 30, image: 'assets/game17.jpg', desc: 'Embark on a new journey in the world of Far Cry 6.', rating: 4 },
+        { id: 18, title: 'Final Fantasy XVI', price: 64.99, discount: 25, image: 'assets/game18.jpg', desc: 'An epic dark fantasy where fates are decided by mighty Eikons and the Dominants who wield them. This is the tale of Clive Rosfield, a tragic warrior who swears revenge on the Dark Eikon Ifrit, a mysterious entity that leaves naught but calamity in its wake.', rating: 4 },
+        { id: 19, title: 'Ghost Of Tsushima', price: 29.99, discount: 15, image: 'assets/game19.jpg', desc: 'A storm is coming. Venture into the complete Ghost of Tsushima. forge your own path through this open-world action adventure and uncover its hidden wonders.', rating: 5 },
+        { id: 20, title: 'GhostRunner', price: 12.99, discount: 90, image: 'assets/game20.jpg', desc: 'Embark on a new journey in the world of GhostRunner.', rating: 2 },
+        { id: 21, title: 'God Of War: Ragnarok', price: 31.99, discount: 15, image: 'assets/game21.jpg', desc: 'Kratos and Atreus embark on a mythic journey for answers before Ragnarök arrives.', rating: 5 },
+        { id: 22, title: 'Grand Theft Auto V', price: 28.99, discount: 10, image: 'assets/game22.jpg', desc: 'Grand Theft Auto V for PC offers players the option to explore the award-winning world of Los Santos and Blaine County in resolutions of up to 4k and beyond.', rating: 4 },
+        { id: 23, title: 'Grand Theft Auto VI', price: 49.99, discount: 10, image: 'assets/game23.jpg', desc: 'Grand Theft Auto VI for PC offers players the option to explore the award-winning world of Los Santos and Blaine County in resolutions of up to 4k and beyond.', rating: 5 },
+        { id: 24, title: 'Hogwarts Legacy', price: 29.99, discount: 40, image: 'assets/game24.jpg', desc: 'Hogwarts Legacy is an open-world action RPG set in the world first introduced in the Harry Potter books. Embark on a journey through familiar and new locations as you explore and discover magical beasts, customize your character and craft potions, master spell casting, upgrade talents and become the wizard you want to be.', rating: 5 },
+        { id: 25, title: 'Kong: Survivor Instinct', price: 20.99, discount: 10, image: 'assets/game25.jpg', desc: 'Embark on a new journey in the world of Kong: Survivor Instinct.', rating: 1 },
+        { id: 26, title: 'Marvels Spider-man 2', price: 29.99, discount: 35, image: 'assets/game26.jpg', desc: 'Be Greater. Together. The incredible power of the symbiote forces Peter Parker and Miles Morales into a desperate fight as they balance their lives, friendships, and their duty to protect in an exciting chapter of the critically acclaimed Spider-Man franchise on PC.', rating: 5 },
+        { id: 27, title: 'Flight Simulator', price: 59.99, discount: 25, image: 'assets/game27.jpg', desc: 'Explore the world with our largest fleet of aircraft and take simulation to new heights while pursuing your aviation career within Microsoft Flight Simulator 2024.', rating: 4 },
+        { id: 28, title: 'Need For Speed Heat', price: 9.99, discount: 99, image: 'assets/game28.jpg', desc: 'Hustle by day and risk it all at night in Need for Speed™ Heat Deluxe Edition, a white-knuckle street racer, where the lines of the law fade as the sun starts to set.', rating: 3 },
+        { id: 29, title: 'No Mans Sky', price: 21.99, discount: 40, image: 'assets/game29.jpg', desc: 'Embark on a new journey in the world of No Mans Sky.', rating: 3 },
+        { id: 30, title: 'Red Dead Redemption 2', price: 29.99, discount: 80, image: 'assets/game30.jpg', desc: 'Winner of over 175 Game of the Year Awards and recipient of over 250 perfect scores, RDR2 is the epic tale of outlaw Arthur Morgan and the infamous Van der Linde gang, on the run across America at the dawn of the modern age. Also includes access to the shared living world of Red Dead Online.', rating: 5 },
+        { id: 31, title: 'Wuthering Waves', price: 1.00, discount: 90, image: 'assets/game31.jpg', desc: 'Embark on a new journey in the world of Wuthering Waves.', rating: 1 },
+        { id: 32, title: 'Sid Meiers Civilization VII', price: 39.99, discount: 15, image: 'assets/game32.jpg', desc: 'Embark on a new journey in the world of Sid Meiers Civilization VII.', rating: 4 },
+        { id: 33, title: 'Sifu', price: 10.99, discount: 55, image: 'assets/game33.jpg', desc: 'Embark on a new journey in the world of Sifu.', rating: 3 },
+        { id: 34, title: 'Silent Hill 2', price: 30.99, discount: 30, image: 'assets/game34.jpg', desc: 'Investigating a letter from his late wife, James returns to where they made so many memories - Silent Hill. What he finds is a ghost town, prowled by disturbing monsters and cloaked in deep fog. Confront the monsters, solve puzzles, and search for traces of your wife in this remake of SILENT HILL 2.', rating: 4 },
+        { id: 35, title: 'Street Fighter 6', price: 40.00, discount: 35, image: 'assets/game35.jpg', desc: 'Here comes Capcom’s newest challenger! Street Fighter™ 6 launches worldwide on June 2nd, 2023 and represents the next evolution of the Street Fighter™ series!', rating: 5 },
+        { id: 36, title: 'Suicide Squad: Kill The Justice League', price: 9.99, discount: 5, image: 'assets/game36.jpg',desc: 'Embark on a new journey in the world of Suicide Squad: Kill The Justice League.', rating: 2 },
+        { id: 37, title: 'Tekken 8', price: 29.99, discount: 0, image: 'assets/game37.jpg', desc: 'Get ready for the next chapter in the legendary fighting game franchise', rating: 4 },
+        { id: 38, title: 'The Elder Scrolls V: Skyrim', price: 19.99, discount: 45, image: 'assets/game38.jpg',desc: 'The Elder Scrolls V: Skyrim Special Edition brings the epic fantasy to life in stunning detail. The Special Edition includes the critically acclaimed game and add-ons with all-new features.', rating: 4 },
+        { id: 39, title: 'Watch Dogs: Legion', price: 29.99, discount: 40, image: 'assets/game39.jpg', desc: 'Build a resistance as you fight to take back a near-future London facing its downfall. Welcome to the Resistance.', rating: 3 },
+        { id: 40, title: 'WWE 2K25', price: 20.00, discount: 60, image: 'assets/game40.jpg', desc: 'Celebrate The Bloodline in Showcase. Compete online in MyGM. Expanded gameplay includes intergender wrestling, chain wrestling, barricade diving, the return of Promos + much more!.', rating: 4 }
+    ];
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = parseInt(urlParams.get('id'));
+        const product = gameData.find(g => g.id === productId);
+
+        if (product) {
+            document.getElementById('product-title').textContent = product.title;
+            document.getElementById('product-img').src = product.image;
+            document.getElementById('product-name').textContent = product.title;
+            const finalPrice = product.discount > 0 ? (product.price * (1 - product.discount / 100)).toFixed(2) : product.price;
+            document.getElementById('product-price').textContent = `$${finalPrice}${product.discount > 0 ? ' (-' + product.discount + '%)' : ''}`;
+            document.getElementById('product-desc').textContent = product.desc;
+
+            const ratingDiv = document.getElementById('product-rating');
+            for (let i = 1; i <= 5; i++) {
+                const star = document.createElement('span');
+                star.textContent = i <= product.rating ? '★' : '☆';
+                ratingDiv.appendChild(star);
+            }
+
+            document.getElementById('add-to-cart').addEventListener('click', () => {
+                let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+                cartItems.push(product);
+                localStorage.setItem('cart', JSON.stringify(cartItems));
+                document.getElementById('cart-total').textContent = cartItems.length;
+                alert(`${product.title} added to cart!`);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZafaGo - Profile</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/buttons.css">
+    <link rel="stylesheet" href="styles/profile.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <style>
+    .redeem-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+        }
+        .redeem-modal-content {
+            background: #1f1f1f;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        .redeem-modal-content h3 {
+            color: #f0f0f0;
+            margin-bottom: 20px;
+        }
+        .redeem-modal-content p {
+            color: #00ccff;
+            font-size: 18px;
+            background: #2a2a2a;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .redeem-modal-content button {
+            margin-top: 20px;
+        }
+        .redeem-btn {
+            background: none;
+            border: none;
+            color: #00ccff;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand">ZafaGo</div>
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Store</a></li>
+            <li><a href="promo.html">Deals</a></li>
+            <li><a href="cart.html">Cart <span id="cart-total">0</span></a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><div id="auth-link"></div></li> 
+        </ul>
+    </nav>
+
+    <section class="profile-container">
+        <h2>Your Profile</h2>
+        <div class="profile-card">
+            <h3 id="user-name">Guest</h3>
+            <p id="user-email">No email</p>
+            <button class="btn" id="logout-btn" style="display: none;">Logout</button>
+            <div class="order-history">
+                <h4>Order History</h4>
+                <ul id="order-list"></ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="redeem-modal" id="redeem-modal">
+        <div class="redeem-modal-content">
+            <h3>Redeem Code</h3>
+            <p id="redeem-code"></p>
+            <button class="btn" id="copy-code">Copy</button>
+            <button class="btn" id="close-modal">Close</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 ZafaGo. Crafted with Passion.</p>
+    </footer>
+
+    <script src="scripts/navbar.js"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentMode = localStorage.getItem('theme') || 'dark';
+            document.body.classList.toggle('light-mode', currentMode === 'light');
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('user')) || {};
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            const ordersKey = `orders_${user.email || 'guest'}`;
+            const orders = JSON.parse(localStorage.getItem(ordersKey)) || [];
+
+            document.getElementById('user-name').textContent = user.name || 'Guest';
+            const emailElement = document.getElementById('user-email');
+            if (user.email) {
+                emailElement.textContent = user.email;
+            } else {
+                emailElement.innerHTML = '<a href="login.html" class="btn">Login</a>';
+            }
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+        const currentMode = localStorage.getItem('theme') || 'dark';
+        document.body.classList.toggle('light-mode', currentMode === 'light');
+
+        document.addEventListener('themeChange', () => {
+            const newMode = localStorage.getItem('theme') || 'dark';
+            document.body.classList.toggle('light-mode', newMode === 'light');
+        });
+    });
+
+
+            const logoutBtn = document.getElementById('logout-btn');
+            if (user.email) {
+                logoutBtn.style.display = 'block';
+                logoutBtn.addEventListener('click', () => {
+                    localStorage.removeItem('user');
+                    window.location.href = 'login.html';
+                });
+            }
+
+            const orderList = document.getElementById('order-list');
+            const redeemModal = document.getElementById('redeem-modal');
+            const redeemCode = document.getElementById('redeem-code');
+            const copyCode = document.getElementById('copy-code');
+            const closeModal = document.getElementById('close-modal');
+
+            orders.forEach((order, orderIndex) => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${order.date}</strong><ul>${order.items.map((item, itemIndex) => `
+                    <li>${item.title} - $${item.price} 
+                        <button class="redeem-btn" data-order="${orderIndex}" data-item="${itemIndex}">👁️</button>
+                    </li>`).join('')}</ul>`;
+                orderList.appendChild(li);
+            });
+
+            orderList.addEventListener('click', (e) => {
+                if (e.target.className === 'redeem-btn') {
+                    const orderIndex = parseInt(e.target.dataset.order);
+                    const itemIndex = parseInt(e.target.dataset.item);
+                    const code = orders[orderIndex].items[itemIndex].redeemCode;
+                    redeemCode.textContent = code;
+                    redeemModal.style.display = 'flex';
+                }
+            });
+
+            copyCode.addEventListener('click', () => {
+                navigator.clipboard.writeText(redeemCode.textContent).then(() => alert('Code copied!'));
+            });
+
+            closeModal.addEventListener('click', () => {
+                redeemModal.style.display = 'none';
+            });
+
+            redeemModal.addEventListener('click', (e) => {
+                if (e.target === redeemModal) {
+                    redeemModal.style.display = 'none';
+                }
+            });
+
+            document.getElementById('cart-total').textContent = cartItems.length;
+        });
+    </script>
+</body>
+</html>

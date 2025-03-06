@@ -1,0 +1,11 @@
+/* Warna dasar */
+body {
+    background-color: #0f0f0f; /* Dark mode */
+    color: #f0f0f0; /* Warna font putih abu-abu di dark mode */
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.light-mode {
+    background-color: #ffffff; /* Light mode */
+    color: #333333; /* Warna font hitam di light mode */
+}

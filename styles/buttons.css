@@ -1,0 +1,66 @@
+.btn {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    color: #f0f0f0 !important; /* Font putih abu-abu di dark mode */
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 25px; /* Pastikan bulat */
+    background: #ff4081; /* Pink di dark mode */
+    border: none;
+    cursor: pointer;
+    transition: background 0.4s ease, box-shadow 0.4s ease, color 0.4s ease;
+    display: inline-block;
+    position: relative;
+    box-shadow: 0 0 10px rgba(255, 64, 129, 0.6); /* Efek cahaya pink di dark mode */
+}
+
+body.light-mode .btn {
+    color: #333333 !important; /* Font hitam di light mode */
+    background: #00ccff; /* Biru di light mode */
+    box-shadow: 0 0 10px rgba(0, 204, 255, 0.6); /* Efek cahaya biru di light mode */
+}
+
+.btn:hover {
+    background: #00ccff; /* Biru di dark mode saat hover */
+    color: #ffffff; /* Font putih tetep di dark mode saat hover */
+    box-shadow: 0 0 15px rgba(0, 204, 255, 0.8), 0 0 30px rgba(0, 204, 255, 0.6); /* Efek cahaya biru di dark mode */
+}
+
+body.light-mode .btn:hover {
+    background: #ff4081; /* Pink di light mode saat hover */
+    color: #333333; /* Font hitam tetep di light mode saat hover */
+    box-shadow: 0 0 15px rgba(255, 64, 129, 0.8), 0 0 30px rgba(255, 64, 129, 0.6); /* Efek cahaya pink di light mode */
+}
+
+/* Styling khusus untuk tombol kecil atau "Add to Cart" */
+.small-btn, .add-to-cart-btn {
+    font-size: 16px;
+    padding: 8px 20px;
+    border-radius: 25px; /* Pastikan bulat */
+}
+
+/* Pastikan tombol "Add to Cart" konsisten */
+.add-to-cart-btn {
+    font-family: 'Poppins', sans-serif;
+    color: #f0f0f0; /* Font putih abu-abu di dark mode */
+    background: #ff4081; /* Pink di dark mode */
+    box-shadow: 0 0 10px rgba(255, 64, 129, 0.6); /* Efek cahaya pink di dark mode */
+}
+
+body.light-mode .add-to-cart-btn {
+    color: #333333; /* Font hitam di light mode */
+    background: #00ccff; /* Biru di light mode */
+    box-shadow: 0 0 10px rgba(0, 204, 255, 0.6); /* Efek cahaya biru di light mode */
+}
+
+.add-to-cart-btn:hover {
+    background: #00ccff; /* Biru di dark mode saat hover */
+    color: #ffffff; /* Font putih tetep di dark mode saat hover */
+    box-shadow: 0 0 15px rgba(0, 204, 255, 0.8), 0 0 30px rgba(0, 204, 255, 0.6); /* Efek cahaya biru di dark mode */
+}
+
+body.light-mode .add-to-cart-btn:hover {
+    background: #ff4081; /* Pink di light mode saat hover */
+    color: #333333; /* Font hitam tetep di light mode saat hover */
+    box-shadow: 0 0 15px rgba(255, 64, 129, 0.8), 0 0 30px rgba(255, 64, 129, 0.6); /* Efek cahaya pink di light mode */
+}

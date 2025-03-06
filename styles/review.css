@@ -1,0 +1,29 @@
+.review-page {
+    padding: 100px 70px;
+    background: linear-gradient(180deg, #1a1a1a, #0f0f0f);
+}
+
+.review-page h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 70px;
+    background: linear-gradient(60deg, #00ccff, #ff4081);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.review-page form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #1f1f1f;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .review-page { padding: 60px 40px; }
+    .review-page h2 { font-size: 40px; }
+}

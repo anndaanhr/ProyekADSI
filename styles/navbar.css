@@ -1,0 +1,127 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(180deg, #0f0f0f, #1a1a1a); /* Kembali ke gradien dark mode */
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    box-sizing: border-box;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Navbar light mode */
+body.light-mode .navbar {
+    background: linear-gradient(180deg, #ffffff, #e0e0e0);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Brand */
+.brand {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(60deg, #00ccff, #ff4081);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Menu */
+.menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.menu li {
+    margin-left: 20px;
+}
+
+/* Tombol menu dengan gradien gelap di dark mode, biru di light mode */
+.menu li a {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #f0f0f0; /* Font putih abu-abu di dark mode */
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    background: linear-gradient(180deg, rgba(0, 204, 255, 0.3), rgba(255, 64, 129, 0.3)); /* Gradien biru-pink gelap di dark mode */
+    transition: background 0.4s ease, box-shadow 0.4s ease, color 0.4s ease;
+    display: inline-block;
+    border: none;
+    position: relative;
+    box-shadow: 0 0 10px rgba(255, 64, 129, 0.6); /* Efek cahaya pink di dark mode */
+}
+
+/* Tombol menu di light mode */
+body.light-mode .menu li a {
+    color: #333333; /* Font hitam di light mode */
+    background: linear-gradient(180deg, rgba(0, 204, 255, 0.2), rgba(255, 64, 129, 0.2)); /* Gradien biru-pink gelap, agak terang dikit di light mode */
+    box-shadow: 0 0 10px rgba(0, 204, 255, 0.6); /* Efek cahaya biru di light mode */
+}
+
+/* Hover effect (biru di dark mode, pink di light mode) */
+.menu li a:hover {
+    background: #00ccff; /* Biru di dark mode saat hover */
+    color: #ffffff; /* Font putih tetep di dark mode saat hover */
+    box-shadow: 0 0 15px rgba(0, 204, 255, 0.8), 0 0 30px rgba(0, 204, 255, 0.6); /* Efek cahaya biru di dark mode */
+}
+
+body.light-mode .menu li a:hover {
+    background: #ff4081; /* Pink di light mode saat hover */
+    color: #333333; /* Font hitam tetep di light mode saat hover */
+    box-shadow: 0 0 15px rgba(255, 64, 129, 0.8), 0 0 30px rgba(255, 64, 129, 0.6); /* Efek cahaya pink di light mode */
+}
+
+/* Tombol mode (toggle) */
+.mode-toggle {
+    font-family: 'Poppins', sans-serif;
+    background: none;
+    border: none;
+    color: #f0f0f0; /* Warna font putih abu-abu di dark mode */
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.3s ease, opacity 0.3s ease;
+    display: block !important; /* Pastikan tombol selalu ditampilkan */
+    opacity: 1 !important; /* Pastikan opacity penuh */
+    pointer-events: auto !important; /* Pastikan bisa diklik */
+}
+
+body.light-mode .mode-toggle {
+    color: #333333; /* Warna font hitam di light mode */
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+        flex-wrap: wrap;
+    }
+    .brand {
+        font-size: 28px;
+    }
+    .menu {
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+    }
+    .menu li {
+        margin-left: 10px;
+    }
+    .menu li a {
+        font-size: 16px;
+        font-weight: 400;
+        padding: 8px 15px;
+    }
+    .mode-toggle {
+        font-size: 18px;
+    }
+}

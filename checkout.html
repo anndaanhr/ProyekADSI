@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZafaGo - Checkout</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/buttons.css">
+    <link rel="stylesheet" href="styles/checkout.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand">ZafaGo</div>
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Store</a></li>
+            <li><a href="promo.html">Deals</a></li>
+            <li><a href="cart.html">Cart <span id="cart-total">0</span></a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><div id="auth-link"></div></li>
+        </ul>
+    </nav>
+
+    <section class="checkout-page">
+        <h2>Checkout</h2>
+        <form id="checkout-form">
+            <div class="input-group">
+                <label>Name</label>
+                <input type="text" required>
+            </div>
+            <div class="input-group">
+                <label>Address</label>
+                <textarea required></textarea>
+            </div>
+            <div class="input-group">
+                <label>Payment</label>
+                <select required>
+                    <option value="credit">Credit Card</option>
+                    <option value="paypal">PayPal</option>
+                </select>
+            </div>
+            <button type="submit" class="btn">Pay Now</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <p>© 2025 ZafaGo. Crafted with Passion.</p>
+    </footer>
+
+    <script src="scripts/navbar.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            const user = JSON.parse(localStorage.getItem('user')) || {};
+            const cartTotalElement = document.getElementById('cart-total');
+            const totalPriceElement = document.createElement('p');
+            totalPriceElement.className = 'total-price';
+            totalPriceElement.textContent = `Total: $${cartItems.reduce((sum, item) => sum + (item.price || 0), 0).toFixed(2)}`;
+            document.querySelector('.checkout-page').insertBefore(totalPriceElement, document.getElementById('checkout-form'));
+
+            function generateRedeemCode() {
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+                let code = '';
+                for (let i = 0; i < 20; i++) {
+                    if (i === 4 || i === 9 || i === 14) {
+                        code += '-'; 
+                    } else {
+                        code += chars.charAt(Math.floor(Math.random() * chars.length));
+                    }
+                }
+                return code;
+            }
+
+            document.getElementById('checkout-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = user.email;
+                if (!email) {
+                    alert('Please log in to complete your purchase.');
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                const ordersKey = `orders_${email}`;
+                const orders = JSON.parse(localStorage.getItem(ordersKey)) || [];
+                const redeemCodes = cartItems.map(item => ({
+                    ...item,
+                    redeemCode: generateRedeemCode()
+                }));
+                orders.push({
+                    items: redeemCodes,
+                    date: new Date().toLocaleString()
+                });
+                localStorage.setItem(ordersKey, JSON.stringify(orders));
+                localStorage.removeItem('cart');
+                localStorage.setItem('latestOrder', JSON.stringify(redeemCodes));
+                window.location.href = 'success.html';
+            });
+
+            if (cartTotalElement) cartTotalElement.textContent = cartItems.length;
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentMode = localStorage.getItem('theme') || 'dark';
+            document.body.classList.toggle('light-mode', currentMode === 'light');
+
+            document.addEventListener('themeChange', () => {
+                const newMode = localStorage.getItem('theme') || 'dark';
+                document.body.classList.toggle('light-mode', newMode === 'light');
+            });
+        });
+    </script>
+</body>
+</html>
