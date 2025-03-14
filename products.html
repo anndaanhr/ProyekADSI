@@ -1,3 +1,4 @@
+<!-- products.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,10 +34,15 @@
                 <option value="action">Action</option>
                 <option value="adventure">Adventure</option>
                 <option value="rpg">RPG</option>
-                <option value="strategy">Strategy</option>
-                <option value="sports">Sports</option>
                 <option value="simulation">Simulation</option>
+                <option value="sports">Sports</option>
+                <option value="strategy">Strategy</option>
+                <option value="horror">Horror</option>
+                <option value="party">Party</option>
                 <option value="puzzle">Puzzle</option>
+                <option value="platformer">Platformer</option>
+                <option value="survival">Survival</option>
+                <option value="sandbox">Sandbox</option>
             </select>
             <select id="sort-filter">
                 <option value="name-asc">Name (A-Z)</option>
@@ -47,24 +53,26 @@
             </select>
         </div>
         <div class="carousel" id="carousel">
-            <button class="carousel-btn prev-btn"><</button>
+            <button class="carousel-btn prev-btn">&lt;</button>
             <div class="games-container" id="games-list"></div>
-            <button class="carousel-btn next-btn">></button>
+            <button class="carousel-btn next-btn">&gt;</button>
         </div>
         <div class="see-all-container">
             <button class="btn see-all-btn" id="see-all-btn">See All</button>
         </div>
-        <div class="full-games" id="full-games" style="display: none;"></div>
+        <div class="full-games" id="full-games" style="display: none;">
+            <div class="games-container" id="full-games-list"></div>
+        </div>
     </section>
 
     <footer class="footer">
         <p>© 2025 ZafaGo. Crafted with Passion.</p>
     </footer>
-
+    
+    <script src="scripts/games.js"></script>
     <script src="scripts/products.js"></script>
     <script src="scripts/navbar.js"></script>
     <script>
-
         document.addEventListener('DOMContentLoaded', () => {
             const currentMode = localStorage.getItem('theme') || 'dark';
             document.body.classList.toggle('light-mode', currentMode === 'light');

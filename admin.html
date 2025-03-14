@@ -18,7 +18,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="products.html">Store</a></li>
             <li><a href="admin.html">Admin</a></li>
-            <li><div id="auth-link"></div></li> <!-- Hapus tombol toggle -->
+            <li><div id="auth-link"></div></li> 
         </ul>
     </nav>
 
@@ -47,12 +47,10 @@
             e.target.reset();
         });
 
-    // Tambah logika mode di semua halaman
     document.addEventListener('DOMContentLoaded', () => {
         const currentMode = localStorage.getItem('theme') || 'dark';
         document.body.classList.toggle('light-mode', currentMode === 'light');
 
-        // Dengarkan perubahan mode dari home page
         document.addEventListener('themeChange', () => {
             const newMode = localStorage.getItem('theme') || 'dark';
             document.body.classList.toggle('light-mode', newMode === 'light');

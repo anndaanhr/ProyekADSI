@@ -44,7 +44,8 @@
             document.addEventListener('themeChange', () => {
                 const newMode = localStorage.getItem('theme') || 'dark';
                 document.body.classList.toggle('light-mode', newMode === 'light');
-                console.log('Mode Updated:', newMode, 'Body Class:', document.body.className);
+                console.log('Mode Updated:', newMode, 'Body Class:', document.body.className); 
+            });
         });
     </script>
 </body>
