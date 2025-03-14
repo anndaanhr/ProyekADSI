@@ -65,46 +65,46 @@ body.light-mode .hero-text {
 .hero-text p {
     font-family: 'Poppins', sans-serif;
     font-size: 26px;
-    color: #f0f0f0; /* Font putih abu-abu di dark mode */
+    color: #f0f0f0; 
     margin-bottom: 35px;
     transition: color 0.3s ease;
 }
 
 body.light-mode .hero-text p {
-    color: #333333; /* Font hitam di light mode */
+    color: #333333; 
 }
 
 .hero-btn {
     font-family: 'Orbitron', sans-serif;
     font-size: 20px;
-    color: #f0f0f0; /* Font putih abu-abu di dark mode */
+    color: #f0f0f0; 
     text-decoration: none;
     padding: 12px 30px;
     border-radius: 25px;
-    background: #ff4081; /* Pink di dark mode */
+    background: #ff4081;
     transition: background 0.4s ease, box-shadow 0.4s ease, color 0.4s ease;
     display: inline-block;
     border: none;
     position: relative;
-    box-shadow: 0 0 10px rgba(255, 64, 129, 0.6); /* Efek cahaya pink di dark mode */
+    box-shadow: 0 0 10px rgba(255, 64, 129, 0.6); 
 }
 
 body.light-mode .hero-btn {
-    color: #333333; /* Font hitam di light mode */
-    background: #00ccff; /* Biru di light mode */
-    box-shadow: 0 0 10px rgba(0, 204, 255, 0.6); /* Efek cahaya biru di light mode */
+    color: #333333; 
+    background: #00ccff; 
+    box-shadow: 0 0 10px rgba(0, 204, 255, 0.6); 
 }
 
 .hero-btn:hover {
-    background: #00ccff; /* Biru di dark mode saat hover */
-    color: #ffffff; /* Font putih tetep di dark mode saat hover */
-    box-shadow: 0 0 15px rgba(0, 204, 255, 0.8), 0 0 30px rgba(0, 204, 255, 0.6); /* Efek cahaya biru di dark mode */
+    background: #00ccff; 
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(0, 204, 255, 0.8), 0 0 30px rgba(0, 204, 255, 0.6);
 }
 
 body.light-mode .hero-btn:hover {
-    background: #ff4081; /* Pink di light mode saat hover */
-    color: #333333; /* Font hitam tetep di light mode saat hover */
-    box-shadow: 0 0 15px rgba(255, 64, 129, 0.8), 0 0 30px rgba(255, 64, 129, 0.6); /* Efek cahaya pink di light mode */
+    background: #ff4081; 
+    color: #333333; 
+    box-shadow: 0 0 15px rgba(255, 64, 129, 0.8), 0 0 30px rgba(255, 64, 129, 0.6); 
 }
 
 .featured-games {
@@ -173,12 +173,12 @@ body.light-mode .game-card:hover {
     padding: 15px 20px;
     font-family: 'Orbitron', sans-serif;
     font-size: 22px;
-    color: #f0f0f0; /* Font putih abu-abu di dark mode */
+    color: #f0f0f0; 
     transition: color 0.3s ease;
 }
 
 body.light-mode .game-card h3 {
-    color: #333333; /* Font hitam di light mode */
+    color: #333333; 
 }
 
 .game-card p {

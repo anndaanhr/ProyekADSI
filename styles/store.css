@@ -1,3 +1,4 @@
+/* styles/store.css */
 .products-page {
     padding: 100px 70px 50px;
     min-height: calc(100vh - 120px);
@@ -105,6 +106,10 @@ body.light-mode .carousel-btn:hover {
     overflow: hidden;
     transition: all 0.4s ease;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 400px;
 }
 
 body.light-mode .game-card {
@@ -133,11 +138,15 @@ body.light-mode .game-card:hover {
 }
 
 .game-card h3 {
-    padding: 15px 20px;
+    padding: 15px 20px 0;
     font-family: 'Orbitron', sans-serif;
     font-size: 22px;
     color: #f0f0f0; 
     transition: color 0.3s ease;
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 body.light-mode .game-card h3 {
@@ -149,6 +158,7 @@ body.light-mode .game-card h3 {
     font-family: 'Poppins', sans-serif;
     font-size: 18px;
     color: #00ccff;
+    flex-grow: 0;
 }
 
 .game-card .discount {
@@ -160,6 +170,7 @@ body.light-mode .game-card h3 {
 .star-rating {
     padding: 0 20px 10px;
     font-size: 20px;
+    flex-grow: 0;
 }
 
 .star-rating span {
@@ -176,6 +187,7 @@ body.light-mode .game-card h3 {
     align-items: center;
     padding: 0 20px 20px; 
     gap: 10px; 
+    margin-top: auto;
 }
 
 .add-to-cart-btn {
@@ -183,6 +195,11 @@ body.light-mode .game-card h3 {
     color: #f0f0f0; 
     background: #ff4081; 
     box-shadow: 0 0 10px rgba(255, 64, 129, 0.6); 
+    padding: 6px 15px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.4s ease, box-shadow 0.4s ease, color 0.4s ease;
 }
 
 body.light-mode .add-to-cart-btn {
@@ -237,6 +254,55 @@ body.light-mode .details-btn:hover {
     box-shadow: 0 0 15px rgba(255, 64, 129, 0.8), 0 0 30px rgba(255, 64, 129, 0.6); 
 }
 
+/* Tombol Wishlist */
+.add-to-wishlist-btn {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: #f0f0f0;
+    background: #ff4081;
+    border: none;
+    border-radius: 25px;
+    padding: 4px 8px; /* Padding kecil untuk menandakan status, disesuaikan */
+    cursor: pointer;
+    transition: background 0.4s ease, box-shadow 0.4s ease, color 0.4s ease;
+    box-shadow: 0 0 10px rgba(255, 64, 129, 0.6);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.light-mode .add-to-wishlist-btn {
+    color: #333333;
+    background: #00ccff;
+    box-shadow: 0 0 10px rgba(0, 204, 255, 0.6);
+}
+
+.add-to-wishlist-btn:hover {
+    background: #00ccff;
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(0, 204, 255, 0.8);
+}
+
+body.light-mode .add-to-wishlist-btn:hover {
+    background: #ff4081;
+    color: #333333;
+    box-shadow: 0 0 15px rgba(255, 64, 129, 0.8);
+}
+
+.add-to-wishlist-btn.active {
+    background: #00ccff;
+    color: #ffffff;
+}
+
+body.light-mode .add-to-wishlist-btn.active {
+    background: #ff4081;
+    color: #333333;
+}
+
+.game-card h3 .add-to-wishlist-btn {
+    margin-left: 10px; /* Jarak dari judul */
+}
+
 .see-all-container {
     text-align: center;
     margin-top: 30px;
@@ -273,12 +339,10 @@ body.light-mode .see-all-btn:hover {
     box-shadow: 0 0 15px rgba(255, 64, 129, 0.8), 0 0 30px rgba(255, 64, 129, 0.6); 
 }
 
-.full-games {
+.full-games .games-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 35px;
-    max-width: 1200px;
-    margin: 50px auto;
 }
 
 @media (max-width: 768px) {
