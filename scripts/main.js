@@ -1,10 +1,5 @@
+// scripts/main.js
 document.addEventListener('DOMContentLoaded', () => {
-    const gameData = [
-        { id: 1, title: 'Elden Ring', price: 29.99, discount: 30, image: 'assets/game1.jpg', category: 'action', rating: 5 },
-        { id: 2, title: 'Tides of Annihilation', price: 49.99, discount: 0, image: 'assets/game2.jpg', category: 'action', rating: 4 },
-        { id: 3, title: 'World War Z: Aftermath', price: 10.99, discount: 35, image: 'assets/game3.jpg', category: 'adventure', rating: 3 }
-    ];
-
     const gamesList = document.getElementById('games-list');
     let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -14,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (gamesList) {
-        gameData.forEach(game => {
+        gameData.slice(0, 3).forEach(game => { // Hanya 3 game untuk featured
             const finalPrice = game.discount > 0 ? (game.price * (1 - game.discount / 100)).toFixed(2) : game.price;
             const discountText = game.discount > 0 ? `<span class="discount">-${game.discount}%</span>` : '';
 
@@ -77,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.speedX = Math.random() * 1 - 0.5;
                 this.speedY = Math.random() * 2.5 + 1;
                 this.opacity = Math.random() * 0.6 + 0.4;
-                this.updateColor(); 
+                this.updateColor();
             }
 
             updateColor() {
@@ -92,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     this.x = Math.random() * canvas.width;
                     this.y = -this.size;
                     this.opacity = Math.random() * 0.6 + 0.4;
-                    this.updateColor(); 
+                    this.updateColor();
                 }
             }
 
